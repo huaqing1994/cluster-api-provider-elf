@@ -259,6 +259,12 @@ func (m *ElfMachine) IsHotUpdating() bool {
 	return false
 }
 
+// AreResourcesMatching returns whether the resources in the status
+// are consistent with those in the spec.
+func (m *ElfMachine) AreResourcesMatching() bool {
+	return m.Spec.DiskGiB == m.Status.Resources.Disk
+}
+
 func (m *ElfMachine) SetVMDisconnectionTimestamp(timestamp *metav1.Time) {
 	if m.Annotations == nil {
 		m.Annotations = make(map[string]string)
